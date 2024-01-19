@@ -32,7 +32,6 @@ def details_new(request, new_id):
     article = get_object_or_404(New, pk=new_id)
     ratings = Rating.objects.filter(new=article)
     average_rating = ratings.aggregate(Avg('rating'))['rating__avg']
-    related_articles = New.objects.filter(categories=news.categories).exclude(id=news.id).order_by('-rating')[:2]
     if request.method == 'POST':
         form = RatingForm(request.POST)
         if form.is_valid():
