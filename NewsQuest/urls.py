@@ -16,14 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from core.views import home
+from core.views import home, all_categories, categories_filter
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
-    path('news_filter/<slug:new_category>', home, name='news_filter'),
+    path('news_filter/<slug:new_category>', categories_filter, name='news_filter'),
+    path('category/<str:new_category>/', all_categories, name='all_categories'),
     path('news/', include('news.urls')),
     path('accounts/', include('accounts.urls')),
 

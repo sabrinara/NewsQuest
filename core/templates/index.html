@@ -1,27 +1,15 @@
-{% extends 'base.html' %} 
-{% load static %} 
+{% extends 'base.html' %}
+{% load static %}
 
-{% block head_title %}NewsQuest{% endblock %} 
+{% block head_title %}NewsQuest{% endblock %}
+
 {% block content %}
-<div class="container mx-auto flex flex-col md:flex-row items-center my-12 md:my-24">
-    <div class="w-full lg:w-1/2 lg:py-6 text-center ">
-        <img class="rounded-2xl" src="{% static '../static/img.jpg' %}" />
+<div class="container mx-auto flex flex-col md:flex-row items-center mb-12 md:mb-24 bg-[url('{% static 'img.jpg' %}')]" style="background-image: url('{% static 'img.jpg' %}'); background-size: cover; opacity: 0.9;">
+    <div class="w-full h-screen md:w-1/2  md:pt-32 text-center text-white mt-24 ">
+       <h1 class="text-5xl font-bold p-2">Welcome to NewsQuest</h1>
+       <p class="text-xl px-16 text-start">NewsQuest, where we believe that staying informed is not just a choice but a powerful tool for navigating the world around us. In the ever-evolving landscape of news, we aim to be your trusted companion, delivering timely, accurate, and diverse perspectives to empower your decisions and enrich your understanding....</p>
     </div>
-
-    <div class="flex flex-col w-full lg:w-1/2 justify-center items-center pt-10 pb-20 px-6 bg-white rounded-2xl bg-opacity-70 mx-3">
-        <h1 class="font-bold text-4xl my-4 text-red-500">Welcome to NewsQuest!</h1>
-        <p class="leading-normal ">
-            NewsQuest, where we believe that staying informed is not just a choice but a powerful tool for navigating the world around us. In the ever-evolving landscape of news, we aim to be your trusted companion, delivering timely, accurate, and diverse perspectives to empower your decisions and enrich your understanding.
-        </p>
-    </div>
-
-   
 </div>
 
-<div class="flex mb-10"> 
-    {% include 'all_news.html' %} 
-    {% include 'categories.html' %}
-</div>
-
-
+{% include 'news/all_news.html' %}
 {% endblock %}

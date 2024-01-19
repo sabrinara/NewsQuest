@@ -1,11 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Hello</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ current_category }} - Category{% endblock %}
+
+{% block content %}
+<!-- all_categories.html -->
+<div class="container grid grid-cols-1 md:grid-cols-3 gap-2 mb-8 p-4">
+    {% for news in newses %}
+        <div class="bg-white w-full p-4 rounded mb-8">
+                <img class="w-full h-64" src="{{ news.image.url }}">
+                <h1 class="font-bold text-2xl mt-4 text-green-900">{{ news.title }}</h1>
+                <p class="text-gray-900 text-lg">{{ news.description | slice:":150" }}...<a href="{% url 'details_new' news.id %}" class="text-blue-900 font-bold hover:text-red-500">Read more</a></p>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

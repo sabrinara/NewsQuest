@@ -1,53 +1,55 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
-{% block title %}{{ news.name }}{% endblock %}
+{% block title %}{{ article.title }}{% endblock %}
 
 {% block content %}
 <div class="container mt-5 bg-gray-100 p-6 rounded-lg shadow-md">
-    {% if messages %}
-    <div class="alert alert-danger text-center" role="alert">
-        {% for message in messages %}
-        {{ message }}
-        {% endfor %}
-    </div>
-    {% endif %}
-
     <div class="md:flex">
-        {% for news in newses %}
-
         <div class="md:w-1/2 md:ml-4">
-            <h1 class="text-4xl font-bold mb-4">{{ news.title }}</h1>
-            <p class="text-gray-800">{{ news.description }}</p>
-
+            <h1 class="text-4xl font-bold mb-4">{{ article.title }}</h1>
+            <p class="text-gray-800">{{ article.description }}</p>
             <h3>Average Rating: {{ average_rating|default:"No ratings yet" }}</h3>
-
             <div class="flex ">
                 <form method="post" action="{% url 'details_new' new_id=article.id %}">
                     {% csrf_token %}
                     {{ form.as_p }}
                     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Submit Rating</button>
                 </form>
-    
-                <h4 class="text-bold text-blue-800">User Ratings:</h4>
-                <ul>
-                    {% for rating in ratings %}
-                    <h2>{{ rating.user.username }} - {{ rating.rating }}</h2>
-                    {% endfor %}
-                </ul>
             </div>
-          
         </div>
         <div class="md:w-1/2 flex items-center justify-center mb-4">
-            {% if news.image %}
-            <img src="{{ news.image.url }}" alt="{{ news.name }} Image"
-                class="w-full md:w-2/3 h-auto rounded-lg shadow-md">
+            {% if article.image %}
+                <img src="{{ article.image.url }}" alt="{{ article.name }} Image" class="w-full md:w-2/3 h-auto rounded-lg shadow-md">
             {% else %}
-            <p>No image available.</p>
+                <p>No image available.</p>
             {% endif %}
         </div>
+    </div>
 
-        {% endfor %}
+    <div class="mt-8">
+        <h2 class="text-2xl font-bold mb-4">Related Articles</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {% for related_article in related_articles %}
+                <div class="max-w-sm w-full lg:max-w-full lg:flex">
+                    <div class="flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
+                        {% if related_article.image %}
+                            <img src="{{ related_article.image.url }}" alt="{{ related_article.title }} Image" class="w-full h-48 md:h-64 object-cover">
+                        {% else %}
+                            <p class="h-48 bg-gray-300 flex items-center justify-center">No image available.</p>
+                        {% endif %}
+                    </div>
+                    <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-2 flex flex-col justify-between leading-normal h-48 md:h-64">
+                        <div class="mb-2">
+                            <h2 class="font-bold text-lg mb-2">{{ related_article.title }}</h2>
+                            <p class="mb-1">{{ related_article.description|slice:":50" }}</p>
+                            <p class="mb-3">Category: {{ related_article.categories }}</p>
+                            <a href="{% url 'details_new' related_article.id %}" class="mb-3 text-white bg-blue-600 hover:bg-green-800 px-4 py-2 rounded">Details</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 
 </div>

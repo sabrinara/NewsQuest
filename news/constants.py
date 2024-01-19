@@ -1,19 +1,11 @@
 CATEGORY_CHOICES = (
-    ('Latest', 'Latest'),
     ('Politics', 'Politics'),
     ('Science', 'Science'),
-    ('Crime', 'Crime'),
-    ('Opinion', 'Opinion'),
     ('Education', 'Education'),
-    ('Tourism', 'Tourism'),
     ('Fashion', 'Fashion'),
-    ('Food', 'Food'),
-    ('Travel', 'Travel'),
     ('Health', 'Health'),
     ('Entertainment', 'Entertainment'),
-    ('General', 'General'),
     ('Business', 'Business'),
     ('Sports', 'Sports'),
-    ('Technology', 'Technology'),
-    ('Jobs', 'Jobs'),
+    ('Technology', 'Technology')
 )
