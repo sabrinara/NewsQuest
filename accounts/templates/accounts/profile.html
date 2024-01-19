@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block head_title %}NewsQuest - Profile{% endblock %}
+
+{% block content %}
+<div class="bg-white p-4 rounded-xl my-6">
+    <div class="flex items-center justify-between">
+        <h4 class="font-bold text-2xl text-left pb-2">
+            Account: {{request.user.account.account_no}}
+        </h4>
+        <a href="{% url 'update_profile' %}" class="bg-blue-700 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+            Update Profile
+        </a>
+        <a href="{% url 'change_password' %}" class="bg-blue-700 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2">
+            Change Password
+        </a>
+ 
+    </div>
+</div>
+
+
+{% endblock %}

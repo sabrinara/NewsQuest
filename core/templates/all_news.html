@@ -1,0 +1,30 @@
+<div class="container w-3/4 grid grid-cols-1 md:grid-cols-2 gap-2 ">
+    {% for news in newses %}
+    <div class="max-w-sm w-full lg:max-w-full lg:flex">
+    <div class="flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" >
+        {% if news.image %}
+            <img src="{{ news.image.url }}" alt="{{ news.title }} Image" class="w-full h-48 md:h-64 object-cover">
+        {% else %}
+            <p class="h-48 bg-gray-300 flex items-center justify-center">No image available.</p>
+        {% endif %}
+    </div>
+    <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-2 flex flex-col justify-between leading-normal h-48 md:h-64">
+      <div class="mb-2">
+        <h2 class="font-bold text-lg mb-2">{{ news.title }}</h2>
+        <p class=" mb-1">{{ news.description }}</p>
+        <p class="mb-3">Category: {{ news.categories }}</p>
+        <a href="{% url 'details_news' news.id %}" class="text-white bg-blue-600 hover:bg-green-800 px-4 py-2 rounded">Details</a>
+      </div>
+      
+    </div>
+    
+  </div>
+{% endfor %}
+</div>
+<script>
+    function submitForm() {
+        document.getElementById("categoryFilterForm").submit();
+    }
+</script>
+
+
