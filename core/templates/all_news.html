@@ -13,7 +13,8 @@
         <h2 class="font-bold text-lg mb-2">{{ news.title }}</h2>
         <p class=" mb-1">{{ news.description }}</p>
         <p class="mb-3">Category: {{ news.categories }}</p>
-        <a href="{% url 'details_news' news.id %}" class="text-white bg-blue-600 hover:bg-green-800 px-4 py-2 rounded">Details</a>
+        <a href="{% url 'details_new' news.id %}" class="text-white bg-blue-600 hover:bg-green-800 px-4 py-2 rounded">Details</a>
+        <p>Rating: {{ news.average_rating }}</p>
       </div>
       
     </div>
