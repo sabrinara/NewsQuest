@@ -1,15 +1,18 @@
-<div class="container grid grid-cols-1 md:grid-cols-3 gap-2">
-    {% for news in newses %}
-            <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-6 flex flex-col justify-between leading-normal h-48 md:h-64">
-                <div class="mb-2">
-                    <h2 class="text-green-900 font-bold text-2xl mb-2">{{ news.title }}</h2>
-                    <p class="mb-1 font-bold text-gray-900 text-lg">{{ news.description|slice:":50" }}...<a href="{% url 'details_new' news.id %}" class="mb-3  text-green-800 hover:text-red-600 px-4 py-2 rounded">Read More</a></p>
-                    <p class="mb-2 text-xl font-bold">Category: <span class="text-red-600">{{ news.categories }}</span></p>
-                    <p class="mb-3 text-xl font-bold">Average Rating: <span class="text-red-600">{{ news.average_rating|default:"No ratings yet" }}</span> </p>
-                    <!-- <a href="{% url 'details_new' news.id %}" class="mb-3 text-white bg-blue-600 hover:bg-green-800 px-4 py-2 rounded">Details</a> -->
+<div class="container mb-12">
+    <h1 class="text-4xl font-bold mb-4 text-center">All News</h1>
+    <div class="container grid grid-cols-1 md:grid-cols-3 gap-2">
+        {% for news in newses %}
+                <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-6 flex flex-col justify-between leading-normal h-48 md:h-64">
+                    <div class="mb-2">
+                        <h2 class="text-green-900 font-bold text-2xl mb-2">{{ news.title }}</h2>
+                        <p class="mb-1 font-bold text-gray-900 text-lg">{{ news.description|slice:":50" }}...<a href="{% url 'details_new' news.id %}" class="mb-3  text-green-800 hover:text-red-600 px-4 py-2 rounded">Read More</a></p>
+                        <p class="mb-2 text-xl font-bold">Category: <span class="text-red-600">{{ news.categories }}</span></p>
+                        <p class="mb-3 text-xl font-bold">Average Rating: <span class="text-red-600">{{ news.average_rating|default:"No ratings yet" }}</span> </p>
+                        <!-- <a href="{% url 'details_new' news.id %}" class="mb-3 text-white bg-blue-600 hover:bg-green-800 px-4 py-2 rounded">Details</a> -->
+                    </div>
                 </div>
-            </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 </div>
 
 <script>
