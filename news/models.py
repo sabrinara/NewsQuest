@@ -11,20 +11,14 @@ class New(models.Model):
     publishing_time = models.DateTimeField(default=timezone.now)
     rating = models.IntegerField(default=0)
 
-    # add soring by rating desending order
-    class Meta:
-        ordering = ['-rating']
     def __str__(self):
         return self.title
 
 class Rating(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    new = models.ForeignKey(New, on_delete=models.CASCADE, related_name='ratings')  # Added related_name
+    new = models.ForeignKey(New, on_delete=models.CASCADE, related_name='ratings')
     rating = models.IntegerField(choices=[(i, i) for i in range(5)])
     date_rated = models.DateTimeField(default=timezone.now)
-
-    class Meta:
-        ordering = ['-rating']
 
     def __str__(self):
         return f"{self.user.username} - {self.new.title} - {self.rating}"

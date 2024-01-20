@@ -12,8 +12,8 @@
             <h1 class="text-4xl font-bold mb-4">{{ article.title }}</h1>
             <p class="text-gray-800">{{ article.description }}</p>
             <!-- <h3 class="text-xl font-bold mb-4">Average Rating: {{ average_rating|default:"No ratings yet" }}</h3> -->
-            <div class="flex flex-cols md:flex-rows items-center justify-between ">
-                <h3 class="text-xl font-bold mb-4">Average Rating: {{ average_rating|default:"No ratings yet" }}</h3>
+            <div class="flex flex-cols md:flex-rows items-center justify-between my-4">
+                <h3 class="text-xl font-bold mb-4">Average Rating: {{ news.average_rating|default:"No ratings yet"|floatformat:2 }}</h3>
                 <form method="post" action="{% url 'details_new' new_id=article.id %}">
                     {% csrf_token %}
                     {{ form.as_p }}

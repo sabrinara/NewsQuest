@@ -14,17 +14,17 @@
             
             </div>
             <div class="flex w-auto">
-                <div class="text-blue-900 my-auto px-5" style="text-align: center;">Welcome, {{ request.user.first_name }} </div>
-                <a href="{% url 'profile' %}" class="mx-2 inline-block font-medium text-sm px-4 py-2 leading-none bg-blue-500 rounded text-white border-white hover:border-transparent hover:text-dark hover:bg-red-700 mt-4 lg:mt-0">User Profile</a>
-                <a href="{% url 'logout' %}" class="mx-2 inline-block font-medium text-sm px-4 py-2 leading-none bg-blue-500 rounded text-white border-white hover:border-transparent hover:text-dark hover:bg-red-700 mt-4 lg:mt-0">Logout!</a>
+                <div class="text-blue-900 my-auto px-5 text-xl font-bold" style="text-align: center;">Welcome!<span class="ml-2 text-red-700">{{ request.user.username }}</span>  </div>
+                <a href="{% url 'profile' %}" class="inline-block font-medium text-sm px-4 mr-4 py-3 leading-none bg-teal-900 rounded text-white border-white hover:border-transparent hover:bg-teal-700 mt-4 lg:mt-0">User Profile</a>
+                <a href="{% url 'logout' %}" class="inline-block font-medium text-sm px-4 py-3 leading-none bg-teal-900 rounded text-white border-white hover:border-transparent hover:bg-teal-700 mt-4 lg:mt-0">Logout!</a>
             </div>
         {% else %}
             <div class="text-md lg:flex-grow"></div>
             <div>
-                <a href="{% url 'login' %}" class="mr-2 inline-block font-medium text-sm px-4 py-2 leading-none bg-blue-900 rounded text-white border-white hover:border-transparent hover:text-gray-800 hover:bg-red-700 mt-4 lg:mt-0">Login!</a>
+                <a href="{% url 'login' %}" class="mr-2 inline-block font-medium text-sm px-4 py-3 leading-none bg-teal-900 rounded text-white border-white hover:border-transparent hover:bg-teal-700 mt-4 lg:mt-0">Login!</a>
             </div>
             <div>
-                <a href="{% url 'signup' %}" class="inline-block font-medium text-sm px-4 py-2 leading-none bg-blue-900 rounded text-white border-white hover:border-transparent hover:text-gray-800 hover:bg-white mt-4 lg:mt-0">Register!</a>
+                <a href="{% url 'signup' %}" class="inline-block font-medium text-sm px-4 py-3 ml-4 leading-none bg-teal-900 rounded text-white border-white hover:border-transparent hover:bg-teal-700 mt-4 lg:mt-0">Register!</a>
             </div>
         {% endif %}
     </div>
