@@ -11,3 +11,9 @@ class RatingForm(forms.ModelForm):
     class Meta:
         model = models.Rating
         fields = ['rating']
+
+# class CategoryForm(forms.ModelForm):
+#     class Meta:
+#         model = models.Category
+#         fields = ['name']
+#         exclude = ['slug']

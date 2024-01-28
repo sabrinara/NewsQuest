@@ -9,6 +9,7 @@ class UserNewspaperAccount(models.Model):
     birth_date = models.DateField(null=True, blank=True)
     gender = models.CharField(max_length=10, choices=GENDER_TYPE)
     initial_publish_date = models.DateField(auto_now_add=True)
+    is_editor = models.BooleanField(default=False)
 
     
     def __str__(self):

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+ 
+<div class="container mt-5 mb-5">
+  <div class="card mx-auto" style="max-width: 500px; padding: 30px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background-color: #f5f5f5;">
+    <h2 class="text-center mb-4 text-dark font-weight-bold">Add Your News</h2>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <button type="submit" class="btn btn-success btn-block mt-4">Submit</button>
+    </form>
+  </div>
+</div>
+  
+{% endblock %}

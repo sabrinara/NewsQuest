@@ -15,6 +15,9 @@
             </div>
             <div class="flex w-auto">
                 <div class="text-blue-900 my-auto px-5 text-xl font-bold" style="text-align: center;">Welcome!<span class="ml-2 text-red-700">{{ request.user.username }}</span>  </div>
+                {% if request.user.account.is_editor %}
+                <a href="{% url 'add_news' %}" class="inline-block font-medium text-sm px-4 mr-4 py-3 leading-none bg-teal-900 rounded text-white border-white hover:border-transparent hover:bg-teal-700 mt-4 lg:mt-0">Add News</a>
+                {% endif %}
                 <a href="{% url 'profile' %}" class="inline-block font-medium text-sm px-4 mr-4 py-3 leading-none bg-teal-900 rounded text-white border-white hover:border-transparent hover:bg-teal-700 mt-4 lg:mt-0">User Profile</a>
                 <a href="{% url 'logout' %}" class="inline-block font-medium text-sm px-4 py-3 leading-none bg-teal-900 rounded text-white border-white hover:border-transparent hover:bg-teal-700 mt-4 lg:mt-0">Logout!</a>
             </div>

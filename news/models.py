@@ -3,6 +3,15 @@ from django.contrib.auth.models import User
 from .constants import CATEGORY_CHOICES
 from django.utils import timezone
 
+# class Category(models.Model):
+#     name = models.CharField(max_length=200)
+#     slug= models.SlugField(max_length=100,null=True, blank= True,unique = True)
+
+
+#     def __str__(self):
+#         return self.name
+
+
 class New(models.Model):
     categories = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
     title = models.CharField(max_length=100)
