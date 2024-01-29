@@ -51,6 +51,7 @@ def signup(request):
 
                 current_site = get_current_site(request)
                 confirm_link = f'https://{current_site.domain}/accounts/activate/{uid}/{token}'
+                # confirm_link = f'https://newsquest.onrender.com/accounts/activate/{uid}/{token}'
                 # confirm_link = f'http://127.0.0.1:8000/accounts/activate/{uid}/{token}'
 
                 # Send activation email

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block head_title %}NewsQuest - Login{% endblock %}
 {% block content %}
 {% if form.non_field_errors %} 
@@ -9,10 +10,14 @@
 </div>
 {% endfor %} 
 {% endif %}
-<div class="grid grid-cols-3 gap-4">
-    <div></div>
-    <div class="py-2 px-3 rounded-xl bg-white mt-12">
-        <h1 class="font-bold text-5xl text-blue-900 text-center pb-5 shadow-md">Login Now!</h1>
+<div class="pt-10">
+    <h1 class="font-bold text-2xl md:text-5xl text-blue-900 text-center pb-5 ">Login Now!</h1>
+    <div class="flex justify-center items-center h-screen">
+    <div class="w-1/2 hidden md:flex">
+        <img src = "{% static 'login.png'%}" >
+    </div>
+    <div class="py-2 px-3 rounded-xl bg-transparent mt-12 w-full md:w-1/2">
+        
         <div class="w-full mt-10">
             <form method="post" class="shadow-md border border-gray-200 rounded px-8 pt-6 pb-8 mb-4">
                 {% csrf_token %} 
@@ -37,11 +42,13 @@
                     <button
                         class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         type="submit">
-                        LOG IN
+                        LOGIN
                     </button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+</div>
+
 {% endblock %}

@@ -13,7 +13,7 @@
         {% block head_extra %}{% endblock %}
         <style>
             footer {
-                position: fixed !important;
+                /* position: fixed !important; */
                 bottom: 0 !important;
                 width: 100%;
             }
@@ -27,9 +27,8 @@
                 {% block content %}
                 {% endblock %}
             </div>
-            {% include 'footer.html' %}
-
         {% endblock %}
+        {% include 'footer.html' %}
     </body>
 
 </html>
