@@ -1,19 +1,12 @@
 <nav class="flex items-center justify-between flex-wrap bg-green-200 py-4 px-10">
     <div class="flex items-center flex-shrink-0 text-white mr-6">
         <span class="font-semibold text-xl tracking-tight text-blue-800 text-3xl "><a href="/">NewsQuest</a></span>
-        <a href="{% url 'home' %}" class="text-blue-900 hover:text-blue-700 ml-10 font-bold text-xl">Home</a>
+        <a href="{% url 'home' %}" class="text-blue-900 hover:text-blue-700 ml-10 font-bold text-xl hover:underline">Home</a>
     </div>
-    <div class="block lg:hidden">
-        <button class="flex items-center px-3 py-2 border rounded text-white border-white-400 hover:text-white hover:border-white">
-            <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-        </button>
-    </div>
-    <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto px-10">
+   
+    <div class="w-full flex items-end md:items-center justify-end md:justify-center  md:w-auto md:px-10 md:py-2">
         {% if request.user.is_authenticated %}
-            <div class="text-md lg:flex-grow">
-            
-            </div>
-            <div class="flex w-auto">
+            <div class="flex items-center justify-end w-auto">
                 <div class="text-blue-900 my-auto px-5 text-xl font-bold" style="text-align: center;">Welcome!<span class="ml-2 text-red-700">{{ request.user.username }}</span>  </div>
                 {% if request.user.account.is_editor %}
                 <a href="{% url 'add_news' %}" class="inline-block font-medium text-sm px-4 mr-4 py-3 leading-none bg-teal-900 rounded text-white border-white hover:border-transparent hover:bg-teal-700 mt-4 lg:mt-0">Add News</a>
@@ -33,3 +26,5 @@
     </div>
     {% include 'categories.html' %}
 </nav>
+
+  
