@@ -112,3 +112,9 @@ def add_news(request):
     else:
         messages.warning(request, 'No permission to add.')
         return redirect('home')
+    
+
+@login_required
+def all_news(request):
+    newses = New.objects.all()
+    return render(request, 'news/all_news.html', {'newses': newses})

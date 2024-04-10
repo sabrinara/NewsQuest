@@ -12,7 +12,7 @@
       <p class="flex-1 dark:text-gray-400">If you delete this news, it will be gone forever. You can't undo this action.
       </p>
       {% csrf_token %}
-      {{ form | crispy }}
+      {{ form.as_p }}
       <div class="flex flex-col justify-end gap-3 mt-6 sm:flex-row">
         <button type="submit" class="bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded">Delete</button>
         <a href="{% url 'home' %}" class="bg-green-600 hover:bg-green-800 text-white font-bold py-2 px-4 rounded">No</a>

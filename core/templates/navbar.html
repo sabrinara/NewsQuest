@@ -1,30 +1,55 @@
-<nav class="flex items-center justify-between flex-wrap bg-green-200 py-4 px-10">
-    <div class="flex items-center flex-shrink-0 text-white mr-6">
-        <span class="font-semibold text-xl tracking-tight text-blue-800 text-3xl "><a href="/">NewsQuest</a></span>
-        <a href="{% url 'home' %}" class="text-blue-900 hover:text-blue-700 ml-10 font-bold text-xl hover:underline">Home</a>
+{% load static %}
+<nav class="flex items-center justify-between flex-wrap py-4 px-10">
+    <div class="flex items-center">
+        <a href="{% url 'home' %}"><img src="{% static 'logo.png' %}" width="50px" height="50px"></a>
+        <a href="{% url 'home' %}" class="font-semibold text-xl tracking-tight text-blue-800 text-3xl ">NewsQuest</a>
     </div>
-   
-    <div class="w-full flex items-end md:items-center justify-end md:justify-center  md:w-auto md:px-10 md:py-2">
+    <div class="flex items-center">
+        
+        <a href="{% url 'home' %}"
+            class="text-blue-900 hover:text-blue-700  focus:underline font-semibold hover:font-bold text-lg ">Home</a>
         {% if request.user.is_authenticated %}
-            <div class="flex items-center justify-end w-auto">
-                <div class="text-blue-900 my-auto px-5 text-xl font-bold" style="text-align: center;">Welcome!<span class="ml-2 text-red-700">{{ request.user.username }}</span>  </div>
-                {% if request.user.account.is_editor %}
-                <a href="{% url 'add_news' %}" class="inline-block font-medium text-sm px-4 mr-4 py-3 leading-none bg-teal-900 rounded text-white border-white hover:border-transparent hover:bg-teal-700 mt-4 lg:mt-0">Add News</a>
-                {% endif %}
-                <a href="{% url 'profile' %}" class="inline-block font-medium text-sm px-4 mr-4 py-3 leading-none bg-teal-900 rounded text-white border-white hover:border-transparent hover:bg-teal-700 mt-4 lg:mt-0">User Profile</a>
-                <a href="{% url 'logout' %}" class="inline-block font-medium text-sm px-4 py-3 leading-none bg-teal-900 rounded text-white border-white hover:border-transparent hover:bg-teal-700 mt-4 lg:mt-0">Logout!</a>
-            </div>
-        {% else %}
-            <div class="text-md lg:flex-grow"></div>
-            <div>
-                <a href="{% url 'login' %}" class="mr-2 inline-block font-medium text-sm px-4 py-3 leading-none bg-teal-900 rounded text-white border-white hover:border-transparent hover:bg-teal-700 mt-4 lg:mt-0">Login!</a>
-            </div>
-            <div>
-                <a href="{% url 'signup' %}" class="inline-block font-medium text-sm px-4 py-3 ml-4 leading-none bg-teal-900 rounded text-white border-white hover:border-transparent hover:bg-teal-700 mt-4 lg:mt-0">Register!</a>
-            </div>
+        {% if request.user.account.is_editor %}
+        <a href="{% url 'add_news' %}"
+            class="text-blue-900 hover:text-blue-700  focus:underline ml-4 font-semibold hover:font-bold text-lg ">Add
+            News</a>
+
         {% endif %}
+        <a  href="{% url 'all_news' %}" 
+            class="text-blue-900 hover:text-blue-700  focus:underline ml-4 font-semibold hover:font-bold text-lg ">All
+            News</a>
+            <!-- <h1 class="text-blue-900 hover:text-blue-700  focus:underline ml-4 font-semibold hover:font-bold text-lg ">Editors</h1> -->
+        
+        {% else %}
+        <div class="text-md lg:flex-grow"></div>
+        <div>
+            <a href="{% url 'login' %}"
+                class="text-blue-900 hover:text-blue-700  focus:underline ml-4 font-semibold hover:font-bold text-lg">Login</a>
+        </div>
+        <div>
+            <a href="{% url 'signup' %}"
+                class="text-blue-900 hover:text-blue-700  focus:underline ml-4 font-semibold hover:font-bold text-lg">Register</a>
+        </div>
+        {% endif %}
+    </div>
+    <div class="relative mx-4">
+        <button onclick="toggleDropdown()" class="flex items-start focus:outline-none">
+            <img src="{% static 'path/to/user/image.png' %}" alt="User Image" class="w-8 h-8 rounded-full">
+    
+        </button>
+        <div id="dropdownMenu" class="absolute bg-white mt-2 px-2 py-2 border border-gray-300 rounded-lg shadow-lg hidden">
+            <!-- Dropdown content here -->
+            <h1>{{request.user.username}}</h1>
+            <a href="{% url 'profile' %}" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</a>
+            <a href="{% url 'logout' %}" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</a>
+        </div>
     </div>
     {% include 'categories.html' %}
 </nav>
 
-  
+<script>
+    function toggleDropdown() {
+        var dropdownMenu = document.getElementById("dropdownMenu");
+        dropdownMenu.classList.toggle("hidden");
+    }
+</script>
