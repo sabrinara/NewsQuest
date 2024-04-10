@@ -1,5 +1,5 @@
 {% load static %}
-<nav class="flex items-center justify-between flex-wrap py-4 px-10">
+<nav class="flex items-center justify-between flex-wrap py-4 px-2 md:px-10">
     <div class="flex items-center">
         <a href="{% url 'home' %}"><img src="{% static 'logo.png' %}" width="50px" height="50px"></a>
         <a href="{% url 'home' %}" class="font-semibold text-xl tracking-tight text-blue-800 text-3xl ">NewsQuest</a>
@@ -32,19 +32,22 @@
         </div>
         {% endif %}
     </div>
-    <div class="relative mx-4">
+    {% if request.user.is_authenticated %}
+    <div class="relative  mr-16">
         <button onclick="toggleDropdown()" class="flex items-start focus:outline-none">
             <img src="{% static 'path/to/user/image.png' %}" alt="User Image" class="w-8 h-8 rounded-full">
     
         </button>
-        <div id="dropdownMenu" class="absolute bg-white mt-2 px-2 py-2 border border-gray-300 rounded-lg shadow-lg hidden">
+        <div id="dropdownMenu" class="absolute bg-white mt-2 px-2 py-1 border border-gray-300 rounded-lg shadow-lg hidden ">
             <!-- Dropdown content here -->
             <h1>{{request.user.username}}</h1>
-            <a href="{% url 'profile' %}" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</a>
-            <a href="{% url 'logout' %}" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</a>
+            <a href="{% url 'profile' %}" class="block px-4 py-1 text-gray-800 hover:bg-gray-200">Profile</a>
+            <a href="{% url 'logout' %}" class="block px-4 py-1 text-gray-800 hover:bg-gray-200">Logout</a>
         </div>
     </div>
+    {% endif %}
     {% include 'categories.html' %}
+    <hr class="w-full h-px bg-sky-900 border-2 ">
 </nav>
 
 <script>
