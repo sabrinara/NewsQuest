@@ -1,21 +1,21 @@
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from .constants import  GENDER_TYPE
+from .constants import GENDER_TYPE
 from django.contrib.auth.models import User
 from .models import UserNewspaperAccount, UserAddress
 
 class UserRegistrationForm(UserCreationForm):
     birth_date = forms.DateField(widget=forms.DateInput(attrs={'type':'date'}))
-    image = forms.ImageField()
     gender = forms.ChoiceField(choices=GENDER_TYPE)
     street_address = forms.CharField(max_length=100)
     city = forms.CharField(max_length= 100)
     postal_code = forms.IntegerField()
     country = forms.CharField(max_length=100)
+    userImage = forms.ImageField(label='Upload Image', required=True)
+
     class Meta:
         model = User
-        fields = ['username', 'password1', 'password2', 'first_name', 'last_name', 'email', 'birth_date',"image",'gender', 'postal_code', 'city','country', 'street_address']
-        
+        fields = ['username', 'password1', 'password2', 'first_name', 'last_name', 'email', 'birth_date','gender', 'postal_code', 'city','country', 'street_address', 'userImage']
         
     def save(self, commit=True):
         our_user = super().save(commit=False) 
@@ -25,23 +25,23 @@ class UserRegistrationForm(UserCreationForm):
             postal_code = self.cleaned_data.get('postal_code')
             country = self.cleaned_data.get('country')
             birth_date = self.cleaned_data.get('birth_date')
-            image = self.cleaned_data.get('image')
             city = self.cleaned_data.get('city')
             street_address = self.cleaned_data.get('street_address')
+            userImage = self.cleaned_data.get('userImage')
             
             UserAddress.objects.create(
-                user = our_user,
-                postal_code = postal_code,
-                country = country,
-                city = city,
-                street_address = street_address
+                user=our_user,
+                postal_code=postal_code,
+                country=country,
+                city=city,
+                street_address=street_address
             )
             UserNewspaperAccount.objects.create(
-                user = our_user,
-                gender = gender,
-                image = image,
-                birth_date =birth_date,
-                account_no = 100000+ our_user.id
+                user=our_user,
+                gender=gender,
+                birth_date=birth_date,
+                account_no=100000 + our_user.id,
+                userImage=userImage
             )
         return our_user
     
@@ -51,7 +51,7 @@ class UserRegistrationForm(UserCreationForm):
         for field in self.fields:
             self.fields[field].widget.attrs.update({
                 
-                'class' : (
+                'class': (
                     'appearance-none block w-full bg-gray-200 '
                     'text-gray-700 border border-gray-200 rounded '
                     'py-3 px-4 leading-tight focus:outline-none '
@@ -59,20 +59,18 @@ class UserRegistrationForm(UserCreationForm):
                 ) 
             })
 
-
-
 class UserUpdateForm(forms.ModelForm):
     birth_date = forms.DateField(widget=forms.DateInput(attrs={'type':'date'}))
     gender = forms.ChoiceField(choices=GENDER_TYPE)
     street_address = forms.CharField(max_length=100)
-    image = forms.ImageField()
     city = forms.CharField(max_length= 100)
     postal_code = forms.IntegerField()
     country = forms.CharField(max_length=100)
+    userImage = forms.ImageField(label='Update Image', required=False)
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email']
+        fields = ['first_name', 'last_name', 'email', 'userImage']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -96,7 +94,7 @@ class UserUpdateForm(forms.ModelForm):
 
             if user_account:
                 self.fields['gender'].initial = user_account.gender
-                self.fields['image'].initial = user_account.image
+                self.fields['userImage'].initial = user_account.userImage
                 self.fields['birth_date'].initial = user_account.birth_date
                 self.fields['street_address'].initial = user_address.street_address
                 self.fields['city'].initial = user_address.city
@@ -108,12 +106,12 @@ class UserUpdateForm(forms.ModelForm):
         if commit:
             user.save()
 
-            user_account, created = UserNewspaperAccount.objects.get_or_create(user=user) # jodi account thake taile seta jabe user_account ar jodi account na thake taile create hobe ar seta created er moddhe jabe
+            user_account, created = UserNewspaperAccount.objects.get_or_create(user=user) 
             user_address, created = UserAddress.objects.get_or_create(user=user) 
 
             user_account.gender = self.cleaned_data['gender']
             user_account.birth_date = self.cleaned_data['birth_date']
-            user_account.image = self.cleaned_data['image']
+            user_account.userImage = self.cleaned_data['userImage']
             user_account.save()
 
             user_address.street_address = self.cleaned_data['street_address']
@@ -122,4 +120,5 @@ class UserUpdateForm(forms.ModelForm):
             user_address.country = self.cleaned_data['country']
             user_address.save()
 
+         
         return user
