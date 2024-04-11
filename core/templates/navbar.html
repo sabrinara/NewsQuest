@@ -4,22 +4,22 @@
         <a href="{% url 'home' %}"><img src="{% static 'logo.png' %}" width="50px" height="50px"></a>
         <a href="{% url 'home' %}" class="font-semibold text-xl tracking-tight text-blue-800 text-3xl ">NewsQuest</a>
     </div>
-    <div class="flex items-center">
-        
+    <div class="flex items-center ">
+
         <a href="{% url 'home' %}"
-            class="text-blue-900 hover:text-blue-700  focus:underline font-semibold hover:font-bold text-lg ">Home</a>
+            class="hidden md:flex text-blue-900 hover:text-blue-700  focus:underline font-semibold hover:font-bold text-lg ">Home</a>
         {% if request.user.is_authenticated %}
         {% if request.user.account.is_editor %}
         <a href="{% url 'add_news' %}"
-            class="text-blue-900 hover:text-blue-700  focus:underline ml-4 font-semibold hover:font-bold text-lg ">Add
+            class="hidden md:flex text-blue-900 hover:text-blue-700  focus:underline ml-4 font-semibold hover:font-bold text-lg ">Add
             News</a>
 
         {% endif %}
-        <a  href="{% url 'all_news' %}" 
-            class="text-blue-900 hover:text-blue-700  focus:underline ml-4 font-semibold hover:font-bold text-lg ">All
+        <a href="{% url 'all_news' %}"
+            class="hidden md:flex text-blue-900 hover:text-blue-700  focus:underline ml-4 font-semibold hover:font-bold text-lg ">All
             News</a>
-            <!-- <h1 class="text-blue-900 hover:text-blue-700  focus:underline ml-4 font-semibold hover:font-bold text-lg ">Editors</h1> -->
-        
+        <!-- <h1 class="text-blue-900 hover:text-blue-700  focus:underline ml-4 font-semibold hover:font-bold text-lg ">Editors</h1> -->
+
         {% else %}
         <div class="text-md lg:flex-grow"></div>
         <div>
@@ -33,16 +33,23 @@
         {% endif %}
     </div>
     {% if request.user.is_authenticated %}
-    <div class="relative  mr-16">
+    <div class="relative">
         <button onclick="toggleDropdown()" class="flex items-start focus:outline-none">
             <img src="{% static 'path/to/user/image.png' %}" alt="User Image" class="w-8 h-8 rounded-full">
-    
+
         </button>
-        <div id="dropdownMenu" class="absolute bg-white mt-2 px-2 py-1 border border-gray-300 rounded-lg shadow-lg hidden ">
+        <div id="dropdownMenu"
+            class="absolute right-0 bg-white mt-2 px-2 py-1 border border-gray-300 rounded-lg shadow-lg hidden ">
             <!-- Dropdown content here -->
-            <h1>{{request.user.username}}</h1>
+            <h1 class="block px-4 py-1 text-gray-800 hover:bg-gray-200">{{request.user.username}}</h1>
+            <a href="{% url 'home' %}" class="md:hidden block px-4 py-1 text-gray-800 hover:bg-gray-200">Home</a>
+            <a href="{% url 'all_news' %}" class="md:hidden block px-4 py-1 text-gray-800 hover:bg-gray-200">All News</a>
+            {% if request.user.account.is_editor %}
+            <a href="{% url 'add_news' %}" class="md:hidden block px-4 py-1 text-gray-800 hover:bg-gray-200">Add News</a>
+            {% endif %}
             <a href="{% url 'profile' %}" class="block px-4 py-1 text-gray-800 hover:bg-gray-200">Profile</a>
             <a href="{% url 'logout' %}" class="block px-4 py-1 text-gray-800 hover:bg-gray-200">Logout</a>
+
         </div>
     </div>
     {% endif %}
