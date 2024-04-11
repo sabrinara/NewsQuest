@@ -10,6 +10,7 @@ class UserNewspaperAccount(models.Model):
     gender = models.CharField(max_length=10, choices=GENDER_TYPE)
     initial_publish_date = models.DateField(auto_now_add=True)
     is_editor = models.BooleanField(default=False)
+    userImage = models.ImageField(upload_to='images/', null=True, blank=True)
 
     
     def __str__(self):
