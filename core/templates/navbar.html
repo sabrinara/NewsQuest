@@ -35,7 +35,7 @@
     {% if request.user.is_authenticated %}
     <div class="relative">
         <button onclick="toggleDropdown()" class="flex items-start focus:outline-none">
-            <img src="{{request.user.userImage.url}}" alt="User Image" class="w-8 h-8 rounded-full">
+            <img src="{{request.user.account.profile_pic.url}}" alt="User Image" class="w-8 h-8 rounded-full">
 
         </button>
         <div id="dropdownMenu"
