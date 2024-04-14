@@ -50,9 +50,9 @@ def signup(request):
                 uid = urlsafe_base64_encode(force_bytes(user.pk))
 
                 current_site = get_current_site(request)
-                confirm_link = f'https://{current_site.domain}/accounts/activate/{uid}/{token}'
+                # confirm_link = f'https://{current_site.domain}/accounts/activate/{uid}/{token}'
                 # confirm_link = f'https://newsquest.onrender.com/accounts/activate/{uid}/{token}'
-                # confirm_link = f'http://127.0.0.1:8000/accounts/activate/{uid}/{token}'
+                confirm_link = f'127.0.0.1:8000/accounts/activate/{uid}/{token}'
 
                 # Send activation email
                 email_subject = "Confirm your email"
@@ -158,7 +158,7 @@ def change_password2(request):
     return render(request, 'accounts/change_password.html', {'form': form, 'title': 'Change without old Password'})
 
 
-class UserProfileUpdateView(LoginRequiredMixin,View):
+class UserProfileUpdateView(LoginRequiredMixin, View):
     template_name = './accounts/update_profile.html'
 
     def get(self, request):
@@ -166,7 +166,7 @@ class UserProfileUpdateView(LoginRequiredMixin,View):
         return render(request, self.template_name, {'form': form})
     
     def post(self, request):  
-        form = forms.UserUpdateForm(request.POST, instance=request.user)
+        form = forms.UserUpdateForm(request.POST, request.FILES, instance=request.user)  # Pass request.FILES for file upload
         if form.is_valid():
             form.save()
             messages.success(
@@ -174,3 +174,4 @@ class UserProfileUpdateView(LoginRequiredMixin,View):
             return redirect('home')
         else:
             print(form.errors)
+            return render(request, self.template_name, {'form': form})

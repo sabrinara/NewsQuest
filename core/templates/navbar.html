@@ -31,28 +31,37 @@
                 class="text-blue-900 hover:text-blue-700  focus:underline ml-4 font-semibold hover:font-bold text-lg">Register</a>
         </div>
         {% endif %}
-    </div>
-    {% if request.user.is_authenticated %}
-    <div class="relative">
-        <button onclick="toggleDropdown()" class="flex items-start focus:outline-none">
-            <img src="{{request.user.account.profile_pic.url}}" alt="User Image" class="w-8 h-8 rounded-full">
+        {% if request.user.is_authenticated %}
+        <div class="relative ml-4">
+            <button onclick="toggleDropdown()" class="flex items-start focus:outline-none border-2 border-gray-900 rounded-full">
+           <!-- dynamic image -->
+           {% if request.user.account.profile_pic %}
+           <img src="{{request.user.account.profile_pic.url}}" alt="Profile" class="w-8 h-8 rounded-full">
+           {% else %}
 
-        </button>
-        <div id="dropdownMenu"
-            class="absolute right-0 bg-white mt-2 px-2 py-1 border border-gray-300 rounded-lg shadow-lg hidden ">
-            <!-- Dropdown content here -->
-            <h1 class="block px-4 py-1 text-gray-800 hover:bg-gray-200">{{request.user.username}}</h1>
-            <a href="{% url 'home' %}" class="md:hidden block px-4 py-1 text-gray-800 hover:bg-gray-200">Home</a>
-            <a href="{% url 'all_news' %}" class="md:hidden block px-4 py-1 text-gray-800 hover:bg-gray-200">All News</a>
-            {% if request.user.account.is_editor %}
-            <a href="{% url 'add_news' %}" class="md:hidden block px-4 py-1 text-gray-800 hover:bg-gray-200">Add News</a>
-            {% endif %}
-            <a href="{% url 'profile' %}" class="block px-4 py-1 text-gray-800 hover:bg-gray-200">Profile</a>
-            <a href="{% url 'logout' %}" class="block px-4 py-1 text-gray-800 hover:bg-gray-200">Logout</a>
+                <img src="{% static './profile_pics/profile.jpg' %}" alt="Profile" class="w-8 h-8 rounded-full">
 
+           {% endif %}
+            </button>
+            <div id="dropdownMenu"
+                class="absolute right-0 bg-white mt-2 px-2 py-1 border border-gray-300 rounded-lg shadow-lg hidden ">
+                <!-- Dropdown content here -->
+                <h1 class="block px-4 py-1 text-gray-800 hover:bg-gray-200">{{request.user.username}}</h1>
+                <a href="{% url 'home' %}" class="md:hidden block px-4 py-1 text-gray-800 hover:bg-gray-200">Home</a>
+                <a href="{% url 'all_news' %}" class="md:hidden block px-4 py-1 text-gray-800 hover:bg-gray-200">All
+                    News</a>
+                {% if request.user.account.is_editor %}
+                <a href="{% url 'add_news' %}" class="md:hidden block px-4 py-1 text-gray-800 hover:bg-gray-200">Add
+                    News</a>
+                {% endif %}
+                <a href="{% url 'profile' %}" class="block px-4 py-1 text-gray-800 hover:bg-gray-200">Profile</a>
+                <a href="{% url 'logout' %}" class="block px-4 py-1 text-gray-800 hover:bg-gray-200">Logout</a>
+
+            </div>
         </div>
+        {% endif %}
     </div>
-    {% endif %}
+
     {% include 'categories.html' %}
     <hr class="w-full h-px bg-sky-900 border-2 ">
 </nav>
