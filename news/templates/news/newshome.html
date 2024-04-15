@@ -1,12 +1,9 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block head_title %}  NewsQuest - All News {% endblock %}
 
-{% block content %}
 <div class="container mb-20">
-    <h1 class="text-4xl font-bold mb-4 text-center">All News </h1>
+    <h1 class="text-4xl font-bold mb-4 text-center">Top News </h1>
     <div class="container grid grid-cols-1 md:grid-cols-3 gap-2">
-        {% for news in newses %}
+        <!-- slice top 6 news -->
+        {% for news in newses|slice:"6" %}
         <div
             class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-6 flex flex-col justify-between leading-normal ">
             <div class="mb-2">
@@ -17,7 +14,7 @@
                 <p class="mb-2 text-xl font-bold">✅Category: <span class="text-red-600">{{ news.categories }}</span></p>
                 <p class="mb-3 text-xl font-bold">⭐Rating: <span class="text-red-600">{{news.average_rating|default:"No ratings yet"|floatformat:2 }}</span> </p>
                 <!-- <a href="{% url 'details_new' news.id %}" class="mb-3 text-white bg-blue-600 hover:bg-green-800 px-4 py-2 rounded">Details</a> -->
-                {% if request.user.is_authenticated and user.account.is_editor %}  
+                {% if request.user.is_authenticated and user.account.is_editor %}
                 <div class="flex flex-cols md:flex-rows items-center justify-center gap-10 mb-4">
                     <a href="{% url 'edit_news' news.id %}"
                         class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">📝Edit</a>
@@ -25,7 +22,7 @@
                         class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">❌Delete</a>
                 </div>
                 {% endif %}
-                
+
             </div>
         </div>
         {% endfor %}
@@ -37,4 +34,3 @@
         document.getElementById("categoryFilterForm").submit();
     }
 </script>
-{% endblock %}

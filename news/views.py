@@ -118,3 +118,14 @@ def add_news(request):
 def all_news(request):
     newses = New.objects.all()
     return render(request, 'news/all_news.html', {'newses': newses})
+
+
+
+@login_required
+@login_required
+def top_rated_news(request):
+    top_rated_newses = New.objects.annotate(avg_rating=Avg('ratings__rating')).order_by('-avg_rating')[:6]
+    return render(request, 'news/newshome.html', {'newses': top_rated_newses})
+
+
+
