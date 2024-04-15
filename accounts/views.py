@@ -35,9 +35,11 @@ def activate(request, uid64, token):
         messages.error(request, "Invalid activation link.")
         return redirect('signup')
 
+
+
 def signup(request):
     if not request.user.is_authenticated:
-        form = forms.UserRegistrationForm()
+        form = forms.UserRegistrationForm( request.POST , request.FILES)
         if request.method == 'POST':
             form = forms.UserRegistrationForm(request.POST)
             if form.is_valid():
@@ -50,9 +52,9 @@ def signup(request):
                 uid = urlsafe_base64_encode(force_bytes(user.pk))
 
                 current_site = get_current_site(request)
-                # confirm_link = f'https://{current_site.domain}/accounts/activate/{uid}/{token}'
+                confirm_link = f'https://{current_site.domain}/accounts/activate/{uid}/{token}'
                 # confirm_link = f'https://newsquest.onrender.com/accounts/activate/{uid}/{token}'
-                confirm_link = f'127.0.0.1:8000/accounts/activate/{uid}/{token}'
+                # confirm_link = f'http://127.0.0.1:8000/accounts/activate/{uid}/{token}'
 
                 # Send activation email
                 email_subject = "Confirm your email"

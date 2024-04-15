@@ -11,6 +11,7 @@ class UserRegistrationForm(UserCreationForm):
     city = forms.CharField(max_length= 100)
     postal_code = forms.IntegerField()
     country = forms.CharField(max_length=100)
+    
     class Meta:
         model = User
         fields = ['username', 'password1', 'password2', 'first_name', 'last_name', 'email', 'birth_date','gender', 'postal_code', 'city','country', 'street_address']
@@ -71,6 +72,34 @@ class UserUpdateForm(forms.ModelForm):
         model = User
         fields = ['first_name', 'last_name', 'email', 'profile_pic']  # Include 'profile_pic' in fields
 
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].widget.attrs.update({
+                'class': (
+                    'appearance-none block w-full bg-gray-200 '
+                    'text-gray-700 border border-gray-200 rounded '
+                    'py-3 px-4 leading-tight focus:outline-none '
+                    'focus:bg-white focus:border-gray-500'
+                )
+            })
+        if self.instance:
+            try:
+                user_account = self.instance.account
+                user_address = self.instance.address
+            except UserNewspaperAccount.DoesNotExist:
+                user_account = None
+                user_address = None
+
+        if user_account:
+            self.fields['gender'].initial = user_account.gender
+            self.fields['birth_date'].initial = user_account.birth_date
+            self.fields['street_address'].initial = user_address.street_address
+            self.fields['city'].initial = user_address.city
+            self.fields['postal_code'].initial = user_address.postal_code
+            self.fields['country'].initial = user_address.country
+            self.fields['profile_pic'].initial = user_account.profile_pic
     # Add this method to handle profile picture update
     def save(self, commit=True):
         user = super().save(commit=False)
