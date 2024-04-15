@@ -99,7 +99,7 @@ class UserUpdateForm(forms.ModelForm):
             self.fields['city'].initial = user_address.city
             self.fields['postal_code'].initial = user_address.postal_code
             self.fields['country'].initial = user_address.country
-            self.fields['profile_pic'].initial = user_account.profile_pic
+            # self.fields['profile_pic'].initial = user_account.profile_pic
     # Add this method to handle profile picture update
     def save(self, commit=True):
         user = super().save(commit=False)

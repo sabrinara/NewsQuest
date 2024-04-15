@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from . import forms
+from .models import EditorRequest
 from django.contrib.auth.decorators import login_required  
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.urls import reverse_lazy
@@ -47,6 +48,7 @@ def signup(request):
                 user.is_active = False  # The user is inactive until activation
                 user.save()
 
+                EditorRequest.objects.create(user=user)
                 # Generate activation link
                 token = default_token_generator.make_token(user)
                 uid = urlsafe_base64_encode(force_bytes(user.pk))

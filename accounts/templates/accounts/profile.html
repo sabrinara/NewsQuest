@@ -1,21 +1,46 @@
 {% extends 'base.html' %}
 
 {% block head_title %}NewsQuest - Profile{% endblock %}
-
+{% load static %}
 {% block content %}
-<div class="bg-white p-4 rounded-xl my-6">
-    <div class="flex items-center justify-between">
-        <h4 class="font-bold text-2xl text-left pb-2">
-            Account: {{request.user.account.account_no}}
-        </h4>
-        <a href="{% url 'update_profile' %}" class="bg-blue-700 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+<div class="flex flex-col-reverse md:flex-col items-center justify-center p-4 rounded-xl my-6">
+    <div class="flex flex-col  md:flex-row items-center justify-center gap-4 mb-4">
+        <div>
+            {% if request.user.account.profile_pic %}
+            <img src="{{request.user.account.profile_pic.url}}"
+                class="w-64 h-68 rounded border-2 shadow-xl border-cyan-700" alt="user">
+            {% else %}
+            <img src="{% static 'profile.png' %}" class="w-64 h-68 rounded border-2 shadow-xl border-cyan-700"
+                alt="user">
+            {% endif %}
+        </div>
+        <div class="px-4 py-4 rounded-xl text-lg font-semibold">
+            <h4 class="font-bold text-2xl text-left pb-2">
+                <span class="text-red-700">Account: </span>{{request.user.account.account_no}}
+            </h4>
+            <h1 class="pb-2"> <span class="text-blue-800 ">User Name:</span> {{request.user.username}}</h1>
+            <!-- <h1 class="pb-2"><span class="text-blue-800 ">First Name:</span> {{request.user.first_name}} <span class="text-blue-800"> Last Name:</span>{{request.user.last_name}}</h1> -->
+            <h1 class="pb-2"><span class="text-blue-800">Email:</span> {{request.user.email}}</h1>
+            <h1 class="pb-2"><span class="text-blue-800">Gender:</span> {{request.user.account.gender}}</h1>
+            <h1 class="pb-2"><span class="text-blue-800">Birth Date:</span> {{request.user.account.birth_date}}</h1>
+            <h1 class="pb-2"><span class="text-blue-800">Street Address:</span> {{request.user.address.street_address}}</h1>
+            <h1 class="pb-2"><span class="text-blue-800">City:</span> {{request.user.address.city}}</h1>
+            <h1 class="pb-2"><span class="text-blue-800">Postal Code: </span>{{request.user.address.postal_code}}</h1>
+            <h1 class="pb-2"><span class="text-blue-800">Country:</span> {{request.user.address.country}}</h1>
+        </div>
+
+    </div>
+    <div class="flex  items-center justify-center md:gap-24 ">
+        <a href="{% url 'update_profile' %}"
+            class="bg-blue-700 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mb-4">
             Update Profile
         </a>
-        <a href="{% url 'change_password' %}" class="bg-blue-700 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2">
+        <a href="{% url 'change_password' %}"
+            class="bg-blue-700 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2 mb-4">
             Change Password
         </a>
- 
     </div>
+</div>
 </div>
 
 
