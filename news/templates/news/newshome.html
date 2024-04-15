@@ -1,10 +1,45 @@
-
 <div class="container mb-20">
     <h1 class="text-4xl font-bold mb-4 text-center">Top News </h1>
-    <div class="container grid grid-cols-1 md:grid-cols-3 gap-2">
+
+    <div class="swiffy-slider slider-item-show4 slider-nav-outside slider-nav-dark slider-nav-xl slider-nav-visible slider-nav-page slider-item-snapstart slider-nav-autoplay slider-nav-autopause slider-item-ratio slider-item-ratio-contain slider-item-ratio-32x9 shadow-lg py-3 py-lg-4"
+        data-slider-nav-autoplay-interval="2000" style="height: 300px;">
+        <div class="slider-container">
+            {% for news in newses|slice:"6" %}
+            <div>
+                <div class=" rounded shadow-lg p-4 mb-4">
+                    <img src="" alt="">
+                    <h4 class="text-lg font-semibold mb-2">{{ news.title }}</h4>
+                    <p class="mb-1  text-gray-900 text-sm">{{ news.description|slice:":50" }}...<a
+                            href="{% url 'details_new' news.id %}"
+                            class="mb-3  text-green-800 hover:text-red-600 px-4 py-2 rounded">Read More</a></p>
+                    <div class="flex items-center justify-between">
+                            <p class="mb-3 text-xl font-bold">⭐<span class="text-red-600">{{news.average_rating|default:"No ratings yet"|floatformat:2 }}</span>
+                            </p>
+                            <p class="mb-2 text-lg font-bold"><span class="text-red-600">{{ news.categories }}</span></p>
+                    </div>
+                  
+                    <!-- <a href="{% url 'details_new' news.id %}"
+                        class="mb-3 text-white bg-blue-600 hover:bg-green-800 px-4 py-2 rounded">Details</a> -->
+                    {% if request.user.is_authenticated and user.account.is_editor %}
+                    <div class="flex flex-cols md:flex-rows items-center justify-center gap-10 mb-4">
+                        <a href="{% url 'edit_news' news.id %}"
+                            class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">📝Edit</a>
+                        <a href="{% url 'delete_news' news.id %}"
+                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">❌Delete</a>
+                    </div>
+                    {% endif %}
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+
+        <button type="button" class="slider-nav" aria-label="Go left"></button>
+        <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
+        <!-- <div class="container grid grid-cols-1 md:grid-cols-3 gap-2"> -->
         <!-- slice top 6 news -->
-        {% for news in newses|slice:"6" %}
-        <div
+        <!-- {% for news in newses|slice:"6" %} -->
+        <!-- <div
             class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-6 flex flex-col justify-between leading-normal ">
             <div class="mb-2">
                 <h2 class="text-green-900 font-bold text-2xl mb-2">{{ news.title }}</h2>
@@ -13,7 +48,7 @@
                         class="mb-3  text-green-800 hover:text-red-600 px-4 py-2 rounded">Read More</a></p>
                 <p class="mb-2 text-xl font-bold">✅Category: <span class="text-red-600">{{ news.categories }}</span></p>
                 <p class="mb-3 text-xl font-bold">⭐Rating: <span class="text-red-600">{{news.average_rating|default:"No ratings yet"|floatformat:2 }}</span> </p>
-                <!-- <a href="{% url 'details_new' news.id %}" class="mb-3 text-white bg-blue-600 hover:bg-green-800 px-4 py-2 rounded">Details</a> -->
+                <a href="{% url 'details_new' news.id %}" class="mb-3 text-white bg-blue-600 hover:bg-green-800 px-4 py-2 rounded">Details</a>
                 {% if request.user.is_authenticated and user.account.is_editor %}
                 <div class="flex flex-cols md:flex-rows items-center justify-center gap-10 mb-4">
                     <a href="{% url 'edit_news' news.id %}"
@@ -24,13 +59,13 @@
                 {% endif %}
 
             </div>
-        </div>
-        {% endfor %}
+        </div> -->
+        <!-- {% endfor %} -->
+        <!-- </div> -->
     </div>
-</div>
 
-<script>
-    function submitForm() {
-        document.getElementById("categoryFilterForm").submit();
-    }
-</script>
+    <script>
+        function submitForm() {
+            document.getElementById("categoryFilterForm").submit();
+        }
+    </script>
