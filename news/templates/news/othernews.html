@@ -1,32 +1,34 @@
-<div>
-    <h1 class="text-4xl font-bold mb-4 text-center">Other News </h1>
+<div class="container mx-6">
+    <h1 class="text-4xl font-bold text-start text-blue-800">Other News</h1>
+    <hr class="w-48 border-2 border-blue-800 mb-10">
     <div class="swiffy-slider slider-item-show4 slider-nav-outside slider-nav-dark slider-nav-xl slider-nav-visible slider-nav-page slider-item-snapstart slider-nav-autoplay slider-nav-autopause slider-item-ratio slider-item-ratio-contain slider-item-ratio-32x9 shadow-lg py-3 py-lg-4"
             data-slider-nav-autoplay-interval="2000" style="height: 236px;">
             <div class="slider-container">
-                {% for news in newses|slice:"6" %}
+                <!-- I want to slice after 6 news   -->
+                
+                {% for news in newses|slice:"6:12" %}
                 <div>
-                    <div class=" rounded shadow-lg p-4 mb-4">
-                        <img src="" alt="">
+                    <div class="flex flex-col justify-between rounded shadow-2xl p-4 mb-4">
+                     <div>
                         <h4 class="text-lg font-semibold mb-2">{{ news.title }}</h4>
                         <p class="mb-1  text-gray-900 text-sm">{{ news.description|slice:":50" }}...<a
                                 href="{% url 'details_new' news.id %}"
                                 class="mb-3  text-green-800 hover:text-red-600 px-4 py-2 rounded">Read More</a></p>
-                        <div class="flex items-center justify-between ">
+                     </div>
+                     <div>
+                         <p><span class="text-blue-800 font-bold text-sm">{{ news.publishing_time }}</span></p>
+                     </div>
+                        
+
+
+                       
+                        <!-- <div class="flex items-center justify-between ">
                             <p class="mb-3 text-xl font-bold">⭐<span class="text-red-600">{{news.average_rating|default:"No ratings yet"|floatformat:2 }}</span>
                             </p>
                             <p class="mb-2 text-lg font-bold"><span class="text-red-600">{{ news.categories }}</span></p>
-                        </div>
+                        </div> -->
     
-                        <a href="{% url 'details_new' news.id %}"
-                            class="mb-3 text-white bg-blue-600 hover:bg-green-800 px-4 py-2 rounded">Details</a>
-    {% if request.user.is_authenticated and user.account.is_editor %}
-                        <div class="flex flex-cols md:flex-rows items-center justify-center gap-10 mb-4">
-                            <a href="{% url 'edit_news' news.id %}"
-                                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">📝Edit</a>
-                            <a href="{% url 'delete_news' news.id %}"
-                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">❌Delete</a>
-                        </div>
-                        {% endif %}
+                      
                     </div>
     
                 </div>

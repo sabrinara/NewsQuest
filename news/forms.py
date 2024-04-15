@@ -4,7 +4,7 @@ from . import models
 class newsForm(forms.ModelForm):
     class Meta:
         model = models.New
-        fields = ['categories', 'title','image', 'description',  'publishing_time']
+        fields = ['categories', 'title','image', 'description',  'publishing_time', 'rating']
 
 
 class RatingForm(forms.ModelForm):

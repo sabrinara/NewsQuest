@@ -19,7 +19,7 @@ class New(models.Model):
     description = models.TextField() 
     publishing_time = models.DateTimeField(default=timezone.now)
     rating = models.IntegerField(default=0)
-
+    # author = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
         return self.title
 
