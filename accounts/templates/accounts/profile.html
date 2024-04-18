@@ -10,8 +10,9 @@
             <img src="{{request.user.account.profile_pic.url}}"
                 class="w-64 h-68 rounded border-2 shadow-xl border-cyan-700" alt="user">
             {% else %}
-            <img src="{% static 'profile.png' %}" class="w-64 h-68 rounded border-2 shadow-xl border-cyan-700"
+            <img src="{% static './profile_pics/profile.jpg' %}" class="w-64 h-68 rounded border-2 shadow-xl border-cyan-700"
                 alt="user">
+                *UPLOAD PROFILE PICTURE
             {% endif %}
         </div>
         <div class="px-4 py-4 rounded-xl text-lg font-semibold">

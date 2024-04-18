@@ -27,10 +27,3 @@ class UserAddress(models.Model):
         return str(self.user.email)
     
 
-class EditorRequest(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date_requested = models.DateTimeField(auto_now_add=True)
-    is_approved = models.BooleanField(default=False)
-
-    def __str__(self):
-        return f"Editor Request for {self.user.username}"
