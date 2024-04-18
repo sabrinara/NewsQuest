@@ -35,12 +35,11 @@
         <div class="relative ml-4">
             <button onclick="toggleDropdown()" class="flex items-start focus:outline-none border-2 border-gray-900 rounded-full">
            <!-- dynamic image -->
-           {% if request.user.account.profile_pic %}
-           <img src="{{request.user.account.profile_pic.url}}" alt="Profile" class="w-8 h-8 rounded-full">
+           {% if request.user.account.profile_pic  %}
+                <img src="{{request.user.account.profile_pic.url}}" alt="Profile" class="w-8 h-8 rounded-full">
            {% else %}
-
                 <img src="{% static './profile_pics/profile.jpg' %}" alt="Profile" class="w-8 h-8 rounded-full">
-
+                
            {% endif %}
             </button>
             <div id="dropdownMenu"

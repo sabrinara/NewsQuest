@@ -3,42 +3,47 @@
     <hr class="w-48 border-2 border-blue-800 mb-10">
     <div
         class="swiffy-slider slider-item-show2 slider-item-reveal slider-nav-outside slider-nav-round slider-nav-visible slider-indicators-outside slider-indicators-round slider-indicators-dark slider-nav-animation slider-nav-animation-fadein">
-      
+
         <div class="slider-container py-4">
-             {% for news in newses|slice:"6" %}
-                <div class="card shadow h-100">
-                    <div class="ratio ratio-16x9">
-                        <img src="{{news.image.url}}" class="rounded" style="height: 280px; width: 100%;" loading="lazy" alt="...">
-                    </div>
-                    <div class="card-body p-3 p-xl-5">
-                        <h4 class="text-lg font-semibold mb-2">{{ news.title }}</h4>
-                        <p class="mb-1  text-gray-900 text-sm">{{ news.description|slice:":50" }}...<a href="{% url 'details_new' news.id %}"
-                                class="mb-3  text-green-800 hover:text-red-600 px-4 py-2 rounded">Read More</a></p>
-                        <div class="flex items-center justify-end ">
-                            <!-- <p class="mb-3  font-bold">⭐<span class="text-red-600">{{news.average_rating|default:"No ratings yet"|floatformat:2 }}</span>
-                            </p> -->
-                            <p class="mb-2 text-lg  font-bold"><span class="text-red-600">{{ news.categories }}</span></p>
-                        </div>
-                        
-                        <a href="{% url 'details_new' news.id %}" class="mb-3 text-white bg-blue-700 hover:bg-green-800 px-4 py-2 rounded">Details</a> 
-                         {% if request.user.is_authenticated and user.account.is_editor %}
-                                            <div class="flex flex-cols md:flex-rows items-center justify-center gap-10 mb-4">
-                                                <a href="{% url 'edit_news' news.id %}"
-                                                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">📝Edit</a>
-                                                <a href="{% url 'delete_news' news.id %}"
-                                                    class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">❌Delete</a>
-                                            </div>
-                        {% endif %}
-                    </div>
+            {% for news in newses|slice:"6" %}
+            <div class="card shadow h-100">
+                <div class="ratio ratio-16x9">
+                    <img src="{{news.image.url}}" class="rounded" style="height: 280px; width: 100%;" loading="lazy"
+                        alt="...">
                 </div>
-              {% endfor %}
-           
+                <div class="card-body p-3 p-xl-5">
+                    <h4 class="text-lg font-semibold mb-2">{{ news.title }}</h4>
+                    <p class="mb-1  text-gray-900 text-sm">{{ news.description|slice:":50" }}...<a
+                            href="{% url 'details_new' news.id %}"
+                            class="mb-3  text-green-800 hover:text-red-600 px-4 py-2 rounded">Read More</a></p>
+                    <div class="flex items-center justify-end ">
+                        <!-- <p class="mb-3  font-bold">⭐<span class="text-red-600">{{news.average_rating|default:"No ratings yet"|floatformat:2 }}</span>
+                            </p> -->
+                        <p class="mb-2 text-lg  font-bold"><span class="text-red-600">{{ news.categories }}</span></p>
+                    </div>
+                    <div class="flex justify-start">
+                        <a href="{% url 'details_new' news.id %}"
+                            class="mb-3 text-white bg-blue-700 hover:bg-green-800 px-4 py-2 rounded">Details</a>
+                    </div>
+
+                    {% if request.user.is_authenticated and user.account.is_editor %}
+                    <div class="flex flex-cols md:flex-rows items-center justify-center gap-10 mb-4">
+                        <a href="{% url 'edit_news' news.id %}"
+                            class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">📝Edit</a>
+                        <a href="{% url 'delete_news' news.id %}"
+                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">❌Delete</a>
+                    </div>
+                    {% endif %}
+                </div>
             </div>
-      
-    
+            {% endfor %}
+
+        </div>
+
+
         <button type="button" class="slider-nav" aria-label="Go left"></button>
         <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
-    
+
         <div class="slider-indicators">
             <button class="" aria-label="Go to slide"></button>
             <button aria-label="Go to slide" class="active"></button>
@@ -47,7 +52,7 @@
             <button aria-label="Go to slide"></button>
         </div>
     </div>
-   
+
 </div>
 
 <script>
