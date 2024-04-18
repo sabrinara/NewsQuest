@@ -4,11 +4,21 @@
 {% block head_title %} NewsQuest {% endblock %}
 
 {% block content %}
-<div class="container mx-auto flex flex-col md:flex-row items-center mb-12 md:mb-20 bg-[url('{% static 'img.jpg' %}')]" style="background-image: url('{% static 'img.jpg' %}'); background-size: cover; opacity: 0.9;">
-    <div class="w-full h-screen md:w-1/2  md:pt-32 text-center text-white mt-24 ">
-       <h1 class="text-5xl font-bold p-2">Welcome to NewsQuest</h1>
-       <p class="text-xl px-16 text-start">NewsQuest, where we believe that staying informed is not just a choice but a powerful tool for navigating the world around us. In the ever-evolving landscape of news, we aim to be your trusted companion, delivering timely, accurate, and diverse perspectives to empower your decisions and enrich your understanding....</p>
+<div class="container mx-auto flex flex-col md:flex-row items-center mb-12 rounded md:mb-20 bg-[url('{% static 'img.jpg' %}')]" style="background-image: url('{% static 'img.jpg' %}'); background-size: cover; opacity: 0.9;">
+    <div class="w-full h-screen   md:pt-32 text-center text-white mt-24 ">
+    <!-- <div class="bg-gradient-to-r from-green-100 to-green-900 text-transparent bg-clip-text text-5xl"> -->
+        <h1 class="text-5xl font-sans font-bold p-4 text-black"><span class="text-white">Welcome to </span>NewsQuest</h1>
+
+    <!-- </div> -->
+    <div class="bg-gradient-to-r from-white to-black text-transparent bg-clip-text text-5xl">
+        <p class="text-xl font-bold px-16 text-start">NewsQuest, where we believe that staying informed is not just a choice
+            but a powerful tool for navigating the world around us. In the ever-evolving landscape of news, we aim to be your
+            trusted companion, delivering timely, accurate, and diverse perspectives to empower your decisions and enrich your
+            understanding....</p>
     </div>
+
+    </div>
+   
 </div>
 
 {% include 'news/newshome.html' %}
