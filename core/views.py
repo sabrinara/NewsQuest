@@ -48,3 +48,5 @@ def all_categories(request, new_category):
     average_rating = all_ratings.aggregate(Avg('rating'))['rating__avg']
 
     return render(request, 'all_categories.html', {'newses': news, 'categories': categories, 'average_rating': average_rating, 'current_category': new_category})
+
+

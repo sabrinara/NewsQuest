@@ -7,7 +7,11 @@
     <div class="flex items-center ">
 
         <a href="{% url 'home' %}"
-            class="hidden md:flex text-blue-900 hover:text-blue-700  focus:underline font-semibold hover:font-bold text-lg ">Home</a>
+            class="md:mr-4 flex text-blue-900 hover:text-blue-700  focus:underline font-semibold hover:font-bold text-lg ">Home
+        </a>
+        <a href="{% url 'about' %}"
+        class="hidden md:flex text-blue-900 hover:text-blue-700  focus:underline font-semibold hover:font-bold text-lg ">About
+        </a>
         {% if request.user.is_authenticated %}
         {% if request.user.account.is_editor %}
         <a href="{% url 'add_news' %}"
@@ -21,7 +25,7 @@
         <!-- <h1 class="text-blue-900 hover:text-blue-700  focus:underline ml-4 font-semibold hover:font-bold text-lg ">Editors</h1> -->
 
         {% else %}
-        <div class="text-md lg:flex-grow"></div>
+        
         <div>
             <a href="{% url 'login' %}"
                 class="text-blue-900 hover:text-blue-700  focus:underline ml-4 font-semibold hover:font-bold text-lg">Login</a>
@@ -46,7 +50,8 @@
                 class="absolute right-0 bg-white mt-2 px-2 py-1 border border-gray-300 rounded-lg shadow-lg hidden ">
                 <!-- Dropdown content here -->
                 <h1 class="block px-4 py-1 text-gray-800 hover:bg-gray-200">{{request.user.username}}</h1>
-                <a href="{% url 'home' %}" class="md:hidden block px-4 py-1 text-gray-800 hover:bg-gray-200">Home</a>
+                <!-- <a href="{% url 'home' %}" class="md:hidden block px-4 py-1 text-gray-800 hover:bg-gray-200">Home</a> -->
+                <a href="{% url 'about' %}" class="md:hidden block px-4 py-1 text-gray-800 hover:bg-gray-200">About</a>
                 <a href="{% url 'all_news' %}" class="md:hidden block px-4 py-1 text-gray-800 hover:bg-gray-200">All
                     News</a>
                 {% if request.user.account.is_editor %}

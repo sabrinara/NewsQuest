@@ -128,4 +128,5 @@ def top_rated_news(request):
     return render(request, 'news/newshome.html', {'newses': top_rated_newses})
 
 
-
+def about(request):
+    return render(request, 'news/about.html')

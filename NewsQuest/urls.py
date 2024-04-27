@@ -27,6 +27,7 @@ urlpatterns = [
     path('category/<str:new_category>/', all_categories, name='all_categories'),
     path('news/', include('news.urls')),
     path('accounts/', include('accounts.urls')),
+    
 
 ]
 
