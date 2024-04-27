@@ -1,5 +1,5 @@
-# The News Hunter
-## A Full Stack Newspaper Web Application.
+# NewsQuest 
+## A Django MVT Pattern Newspaper Web Application.
 ### Website Live: https://newsquest.onrender.com
 #### Admin Credential : 
 - Username: sara
@@ -35,5 +35,16 @@ To run NewsQuest locally, follow these steps:
 - Start the server
  ```bash
     py manage.py runserver
+```
+- setup requirement.txt
+```bash
+  pip install -r requirements. txt
+```
+- For migrations 
+```bash
+  py manage.py makemigrations
+```
+```bash
+  py manage.py migrate
 ```
    
