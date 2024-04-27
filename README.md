@@ -11,13 +11,14 @@
 
 ### Features-
 - User registration and login using email.
+- After registration, an activation email will be sent to the user.
 - With User, EditorPanel.
-- User can give rating.
+- Users can give ratings after that they will receive email.
 - Editor can add news.
 - Editor can edit and delete news(article).
 - Admin can manage Users and Editor.
 - Admin can approve, deny, or make news premium.
-- Admin can make users, admin also editors.
+- Admin can make users, admin and editors.
 
 ### Resources & Credits
 
