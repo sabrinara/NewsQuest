@@ -1,29 +1,58 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block head_title %}NewsQuest - About{% endblock %}
 
 {% block content %}
 <div>
-    <h1 class="text-5xl font-sans font-bold p-4 text-blue-800 text-center">About Us</h1>
-    <p class="text-xl font-bold px-16 text-start">NewsQuest, where we believe that staying informed is not just a choice
-        but a powerful tool for navigating the world around us. In the ever-evolving landscape of news, we aim to be
-        your
-        trusted companion, delivering timely, accurate, and diverse perspectives to empower your decisions and enrich
-        your
-        understanding....</p>
-    <p class="text-xl font-bold px-16 text-start">NewsQuest, where we believe that staying informed is not just a choice
-        but a powerful tool for navigating the world around us. In the ever-evolving landscape of news, we aim to be
-        your
-        trusted companion, delivering timely, accurate, and diverse perspectives to empower your decisions and enrich
-        your
-        understanding....</p>
-    <p class="text-xl font-bold px-16 text-start">NewsQuest, where we believe that staying informed is not just a choice
-        but a powerful tool for navigating the world around us. In the ever-evolving landscape of news, we aim to be
-        your
-        trusted companion, delivering timely, accurate, and diverse perspectives to empower your decisions and enrich
-        your
-        understanding....</p>
+    <div class="relative mb-10">
+        <div class="ratio ratio-16x9 ">
+            <img src="{% static 'about.jpg'%}" class="rounded" style="height: 500px; width: 100%;" loading="lazy"
+                alt="...">
+        </div>
+        <div class="absolute    top-0 left-0 right-0 pt-40">
+            <h1 class="text-5xl font-sans font-bold p-4 text-blue-100 text-center">About Us</h1>
+        </div>
+    </div>
+    <div class="flex flex-col md:flex-row items-center gap-10 ">
+        <div class="w-full md:w-2/3   bg-transparent shadow-md px-20 py-24">
+            <h1 class="text-3xl font-bold text-start">Our Aim</h1>
+          <ul class=" list-disc ml-10 text-blue-900">
+            <li class="text-lg font-bold text-start"> Publish breaking news all over the world.</li>
+            <li class="text-lg font-bold text-start"> Provide authenticate news.</li>
+            <li class="text-lg font-bold text-start"> Being your trusted companion.</li>
+            <li class="text-lg font-bold text-start"> Strong community.</li>
+            <li class="text-lg font-bold text-start"> Political awareness. </li>
+            <li class="text-lg font-bold text-start"> Stay informed.</li>
+            <li class="text-lg font-bold text-start"> Upto date stock news.</li>
+            <li class="text-lg font-bold text-start"> Health awareness.</li>
+            <li class="text-lg font-bold text-start"> Latest Tech news.</li>
+            <li class="text-lg font-bold text-start"> Advertise job openings.</li>
+          </ul>
+        </div>
+        <div class="w-full md:w-1/3 ratio ratio-16x9 ">
+            <img src="{% static 'about-2.jpg'%}" class="rounded" style="height: 500px; width: 100%;" loading="lazy"
+                alt="...">
+        </div>
+    </div>
+    <div class="flex flex-col md:flex-row-reverse items-center mt-10 gap-4">
+        <div class="w-1/2 bg-transparent shadow-md px-20 py-24">
+            <p class="text-xl font-bold text-start">NewsQuest, where we believe that staying informed is not just a
+                choice
+                but a powerful tool for navigating the world around us. In the ever-evolving landscape of news, we aim
+                to be
+                your
+                trusted companion, delivering timely, accurate, and diverse perspectives to empower your decisions and
+                enrich
+                your
+                understanding....</p>
+        </div>
+        <div class="w-1/2 ratio ratio-16x9 ">
+            <img src="{% static 'about-1.jpg'%}" class="rounded" style="height: 400px; width: 100%;" loading="lazy" alt="...">
+        </div>
+    </div>
 
-    
+
+
+
 </div>
 {% endblock %}
