@@ -10,7 +10,7 @@
             class="md:mr-4 flex text-blue-900 hover:text-blue-700  focus:underline font-semibold hover:font-bold text-lg ">Home
         </a>
         <a href="{% url 'about' %}"
-        class="hidden md:flex text-blue-900 hover:text-blue-700  focus:underline font-semibold hover:font-bold text-lg ">About
+        class="mx-4 flex text-blue-900 hover:text-blue-700  focus:underline font-semibold hover:font-bold text-lg ">About
         </a>
         {% if request.user.is_authenticated %}
         {% if request.user.account.is_editor %}
